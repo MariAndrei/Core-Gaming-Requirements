@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class YB_PlayerMovement : MonoBehaviour
 {
-    
+    int movementMultiplier = 3;
 
     void Start()
     { 
@@ -18,23 +18,22 @@ public class YB_PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position += 3 * transform.forward * Time.deltaTime;
+            transform.position += movementMultiplier * transform.forward * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.S)) 
         {
-            transform.position -= 3 * transform.forward * Time.deltaTime;
+            transform.position -= movementMultiplier * transform.forward * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position -= 3 * transform.right * Time.deltaTime;
+            transform.position -= movementMultiplier * transform.right * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position += 3 * transform.right * Time.deltaTime;
+            transform.position += movementMultiplier * transform.right * Time.deltaTime;
         }
     }
-
 }
