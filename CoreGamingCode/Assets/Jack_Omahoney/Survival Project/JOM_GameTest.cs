@@ -18,11 +18,11 @@ public class GameTest : MonoBehaviour
 
     void Update()
     {
-        //Camera rotation
+        // 1?? Camera rotation
         PlayerCam.lateralRotate(Input.GetAxis("Mouse X"));
         PlayerCam.verticalRotate(Input.GetAxis("Mouse Y"));
 
-        //WASD input
+        // 2?? Get WASD input
         float horizontalInput = 0f;
         float verticalInput = 0f;
 
@@ -31,7 +31,7 @@ public class GameTest : MonoBehaviour
         if (Input.GetKey(KeyCode.D)) horizontalInput += 1f;
         if (Input.GetKey(KeyCode.A)) horizontalInput -= 1f;
 
-        //Only move if input exists
+        // 3?? Only move if input exists
         if (!Mathf.Approximately(horizontalInput, 0f) || !Mathf.Approximately(verticalInput, 0f))
         {
             // Flatten camera forward/right vectors
@@ -51,6 +51,5 @@ public class GameTest : MonoBehaviour
             // Rotate player toward movement
             characterTransform.keyboardRotation(moveDir.x, moveDir.z, rotationSpeed);
         }
-
     }
 }

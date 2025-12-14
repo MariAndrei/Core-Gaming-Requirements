@@ -103,4 +103,9 @@ public class GT_CameraControlTPA : MonoBehaviour
 
         phi = Mathf.Clamp(phi,-45,45);
     }
+
+    public void setDistance(float distance)
+    {
+       distanceBehind = distance;
+    }
 }

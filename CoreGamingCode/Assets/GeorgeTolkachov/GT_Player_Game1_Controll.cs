@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GT_Player_Game1_Controll : MonoBehaviour
 {
-    public float moveSpeed;
+    private float moveSpeed;
 
     void Update()
     {

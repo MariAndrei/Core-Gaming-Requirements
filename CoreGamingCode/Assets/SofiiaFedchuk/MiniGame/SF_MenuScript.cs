@@ -8,52 +8,53 @@ public class SF_MenuScript : MonoBehaviour
     public Transform buttonTransformClone;
     public Transform canvasTransform;
     public Sprite playbuttonSprite;
- 
-   public float transitionTime;
-    bool isButtonFading = false;
-    float buttonOpacity = 1f;
-    float timer;
+    public Sprite QuitbuttonSprite;
+    public Animator transition1;
+    public Animator transition2;
+    public float transitionTime;
 
-    ButtonControlScript playButton;
+
+    ButtonControlScript playButton, quitButton;
     void Start()
     {
         Transform newButton = Instantiate(buttonTransformClone, canvasTransform);
         playButton = newButton.GetComponent<ButtonControlScript>();
         playButton.Initilise();
         playButton.SetButtonText("Play");
-        playButton.SetPosition(new Vector2(0, 0));
+        playButton.SetPosition(new Vector2(0, 50));
+      //  playButton.SetColors(Color.white, Color.gray, Color.white, Color.black);
         playButton.SetButtonSize(150, 50);
         playButton.SetButtonImage(playbuttonSprite);
-        playButton.SetButtonAction(LoadNextLevel);
+       // playButton.SetButtonAction(action);
 
+        newButton = Instantiate(buttonTransformClone, canvasTransform);
+        quitButton = newButton.GetComponent<ButtonControlScript>();
+        quitButton.Initilise();
+        quitButton.SetButtonText("Quit");
+        quitButton.SetPosition(new Vector2(0, -50));
+      //  playButton.SetColors(Color.white, Color.gray, Color.white, Color.black);
+        quitButton.SetButtonSize(150, 50);
+        quitButton.SetButtonImage(QuitbuttonSprite);
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            LoadNextLevel();
+        }
     }
    
     public void LoadNextLevel()
     {
-        // SceneManager.LoadScene("MiniGame");
-        
-        isButtonFading = true;
-        timer = transitionTime;
-        StartCoroutine(LoadLevel("MiniGame"));
+               StartCoroutine(LoadLevel("MiniGame"));
     }
     IEnumerator LoadLevel(string name)
-     {
-        float timer = 0f;
-        while(timer<transitionTime)
-        {
-            timer += Time.deltaTime;
-            buttonOpacity = Mathf.Lerp(1f, 0f, timer / transitionTime);
-            canvasTransform.GetComponent<CanvasGroup>().alpha = buttonOpacity;
-            yield return null;
-        }  
+    {
+        transition1.SetTrigger("End");
+        transition2.SetTrigger("ButtonEnd");
         yield return new WaitForSeconds(transitionTime);
-         SceneManager.LoadScene(name);
-        print(timer);
-     }
+        SceneManager.LoadScene(name);
+    }
 }
