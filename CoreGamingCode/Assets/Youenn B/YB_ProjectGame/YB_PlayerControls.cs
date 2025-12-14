@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class YB_PlayerMovement : MonoBehaviour
 {
+    public GameObject bulletCloneTemplate;
     int movementMultiplier = 3;
+    float bulletHeight = 0f, bulletForward = 0.1f;
 
     void Start()
     { 
@@ -36,9 +38,11 @@ public class YB_PlayerMovement : MonoBehaviour
             transform.position += movementMultiplier * transform.right * Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            
+            GameObject newBulletGO = Instantiate(bulletCloneTemplate, transform.position + bulletForward * transform.forward + bulletHeight * transform.up, transform.rotation);
+            YB_BulletScript newBullet = newBulletGO.GetComponent<YB_BulletScript>();
+            newBullet.launchMe(transform.forward);
         }
     }
 }
