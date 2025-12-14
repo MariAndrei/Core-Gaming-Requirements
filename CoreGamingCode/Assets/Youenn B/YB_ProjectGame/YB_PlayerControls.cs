@@ -35,5 +35,10 @@ public class YB_PlayerMovement : MonoBehaviour
         {
             transform.position += movementMultiplier * transform.right * Time.deltaTime;
         }
+
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            
+        }
     }
 }
