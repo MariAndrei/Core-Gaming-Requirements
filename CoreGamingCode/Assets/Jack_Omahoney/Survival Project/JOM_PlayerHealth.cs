@@ -9,8 +9,6 @@ public class JOM_PlayerHealth : MonoBehaviour
     [Header("Health Bar Script")]
     public HS_BarControl healthBar; // Drag your HealthBar UI here
 
-    [Header("UI Elements")]
-    public JOM_txtcontrolscript endGameText; // assign your TextMeshPro object here
     public class TimedEffect
     {
         public float amountPerSecond;      // positive = heal, negative = damage
@@ -18,25 +16,16 @@ public class JOM_PlayerHealth : MonoBehaviour
     }
 
     private List<TimedEffect> activeEffects = new List<TimedEffect>();
-    private bool gameEnded = false;
 
     private void Start()
     {
         currentHealth = maxHealth;
         UpdateHealthBar();
-
-        if (endGameText != null)
-        {
-            endGameText.SetText(""); // Clear any existing text at start
-        }
-
+    
     }
 
     private void Update()
     {
-        if (gameEnded) return;
-
-
         // Apply all active timed effects
         for (int i = activeEffects.Count - 1; i >= 0; i--)
         {
@@ -54,19 +43,6 @@ public class JOM_PlayerHealth : MonoBehaviour
                 Destroy(effect.timer);          // remove timer component
                 activeEffects.RemoveAt(i);      // remove effect
             }
-        }
-
-        // Check for player death
-        if (currentHealth <= 0)
-        {
-            EndGame("You Died!");
-        }
-
-        // Check for win: no more health or poison objects in scene
-        if (GameObject.FindGameObjectsWithTag("Health").Length == 0 &&
-            GameObject.FindGameObjectsWithTag("Poison").Length == 0)
-        {
-            EndGame("You Win!");
         }
     }
 
@@ -112,22 +88,5 @@ public class JOM_PlayerHealth : MonoBehaviour
                 lowHealthColor: Color.red
             );
         }
-    }
-    private void EndGame(string message)
-    {
-        if (gameEnded) return;
-
-        gameEnded = true;
-
-
-        Debug.Log("EndGame triggered: " + message); // <-- check console
-
-        if (endGameText != null)
-            endGameText.SetText(message);
-        else
-            Debug.LogError("EndGameText not assigned or missing JOM_txtcontrolscript!");
-
-        Time.timeScale = 0f; // pause the game
-
     }
 }

@@ -10,7 +10,7 @@ public class SF_In_GameTimer : MonoBehaviour
     {
         m_TextMeshPro = GetComponent<TMPro.TextMeshPro>();
         timer = transform.gameObject.AddComponent<MAR_TimerScript>();
-        timer.InitialiseTimer(300f);
+        timer.InitialiseTimer(60f);
         timer.StartTimer();
     }
 
@@ -53,12 +53,5 @@ public class SF_In_GameTimer : MonoBehaviour
         int min = Mathf.FloorToInt(minutes);
         int sec = (int)time_remaining - min * 60;
         return (min, sec);
-    }
-    public void OnCollisionEnter(UnityEngine.Collision collision)
-    {
-        if (collision.gameObject.name == "GateEnd")
-            print("stop");
-            timer.StopTimer();
-
     }
 }
