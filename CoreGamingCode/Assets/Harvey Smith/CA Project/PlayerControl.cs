@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     private physicsMovement movement;
-    float movementSpeed = 30f;
+    float movementSpeed = 300f;
     public Rigidbody rigid;
    
 
@@ -13,6 +13,12 @@ public class PlayerControl : MonoBehaviour
         movement = GetComponent<physicsMovement>();
     }
 
+    /// <summary>
+    /// Updates the movement of the object based on user input.
+    /// </summary>
+    /// <remarks>This method checks for specific key presses and triggers the corresponding movement actions.
+    /// The movement is determined by the keys (W,S,D,A) for forward, backward, right, and left  movement, respectively.
+    /// The movement speed is controlled by the <c>movementSpeed</c> parameter.</remarks>
     void Update()
     {
 
@@ -28,7 +34,7 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
             movement.leftMovement(movementSpeed);
     }
-
+        
         
     }
    

@@ -1,7 +1,12 @@
 using UnityEngine;
 
 
-
+/// <summary>
+/// Provides movement functionality for a physics-based object in a 3D environment.
+/// </summary>
+/// <remarks>This class enables directional movement (forward, backward, left, and right) for a Rigidbody
+/// component based on the orientation of a Camera. The movement is applied using physics forces, making it suitable for
+/// objects that require realistic motion in a physics simulation.</remarks>
 public class physicsMovement : MonoBehaviour
 {
     public Rigidbody rigid;

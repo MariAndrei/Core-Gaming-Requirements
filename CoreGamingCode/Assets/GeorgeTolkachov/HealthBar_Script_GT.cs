@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class HealthBar_Script_GT : MonoBehaviour
 {
-
-    public float health = 70f;
-    public float targetX = 7f;
+       
+    private float health = 70f;
+    private float targetX = 7f;
     private float speed = 10f;
     private float damage = 2.5f;
 
@@ -20,7 +20,7 @@ public class HealthBar_Script_GT : MonoBehaviour
 
     void Start()
     {
-
+        
     }   
 
     void Update()
@@ -74,6 +74,8 @@ public class HealthBar_Script_GT : MonoBehaviour
             targetX = (health / 70f) * 7f;
         }
 
-
+        if (health == 35f) {
+            
+        }
     }
 }
