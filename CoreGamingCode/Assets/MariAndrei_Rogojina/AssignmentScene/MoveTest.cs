@@ -14,8 +14,6 @@ public class MoveTest : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.T))
-            
         
         if (Input.GetKey(KeyCode.W))
             { walk.moveForward(5); }
@@ -28,6 +26,7 @@ public class MoveTest : MonoBehaviour
 
         if(Input.GetKey(KeyCode.D))
         { walk.moveRight(5); };
+
         Vector3 target = Camera.main.transform.rotation.eulerAngles;
         transform.rotation = Quaternion.Euler(0, target.y, 0);
        
